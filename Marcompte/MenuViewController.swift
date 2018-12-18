@@ -25,6 +25,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         bdd.createTable()
         bdd.insertGroupe(nom: "test", nombre:2)
+        bdd.insertGroupe(nom: "test2", nombre:3)
+        bdd.insertGroupe(nom: "test3", nombre:3)
         
         groupes = bdd.selectAllGroupe()!
 
@@ -76,6 +78,29 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     
+    @IBAction func AjouteGroupe() {
+        
+    }
+    
+    
+    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "MonSegue", sender: groupes[indexPath.row])
+
+    }*/
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+        if segue.destination is TransactionViewController
+        {
+            let vc = segue.destination as? TransactionViewController
+            //vc?.groupeID = sender as! Int
+            if let indexPath = self.TableView.indexPathForSelectedRow {
+                vc?.groupeID =  groupes[indexPath.row].id_groupe
+            }
+        }
+    }
 
 
 }

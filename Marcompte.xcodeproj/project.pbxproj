@@ -19,6 +19,9 @@
 		0B5EB91821C9106C006A2767 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5EB90B21C91062006A2767 /* SQLite.framework */; };
 		0B5EB91921C91074006A2767 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5EB90B21C91062006A2767 /* SQLite.framework */; };
 		0B5EB91A21C91074006A2767 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5EB90B21C91062006A2767 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0B5EB91E21C9118E006A2767 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB91D21C9118E006A2767 /* TransactionViewController.swift */; };
+		0B5EB92021C9285F006A2767 /* addGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB91F21C9285F006A2767 /* addGroupViewController.swift */; };
+		0B5EB92221C93028006A2767 /* addtransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB92121C93028006A2767 /* addtransactionViewController.swift */; };
 		0BBB5A1821C2718C00DA7CC7 /* GroupeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB5A1721C2718C00DA7CC7 /* GroupeTableViewController.swift */; };
 		0BBB5A3721C27E7C00DA7CC7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB5A3621C27E7C00DA7CC7 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
@@ -127,6 +130,9 @@
 		0B45C06321BFEA1000A00692 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		0B45C06521BFEC5900A00692 /* Groupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groupe.swift; sourceTree = "<group>"; };
 		0B5EB90021C91062006A2767 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		0B5EB91D21C9118E006A2767 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		0B5EB91F21C9285F006A2767 /* addGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addGroupViewController.swift; sourceTree = "<group>"; };
+		0B5EB92121C93028006A2767 /* addtransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addtransactionViewController.swift; sourceTree = "<group>"; };
 		0BBB5A1721C2718C00DA7CC7 /* GroupeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupeTableViewController.swift; sourceTree = "<group>"; };
 		0BBB5A3621C27E7C00DA7CC7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +191,8 @@
 			children = (
 				0B45C01021BFDCD600A00692 /* AppDelegate.swift */,
 				0B45C01421BFDCD600A00692 /* Main.storyboard */,
+				0B5EB92121C93028006A2767 /* addtransactionViewController.swift */,
+				0B5EB91F21C9285F006A2767 /* addGroupViewController.swift */,
 				0BBB5A3621C27E7C00DA7CC7 /* MenuViewController.swift */,
 				0BBB5A1721C2718C00DA7CC7 /* GroupeTableViewController.swift */,
 				0B45C01721BFDCD900A00692 /* Assets.xcassets */,
@@ -193,6 +201,7 @@
 				0B45C05D21BFDF3300A00692 /* SingletonBdd.swift */,
 				0B45C06321BFEA1000A00692 /* Transaction.swift */,
 				0B45C06521BFEC5900A00692 /* Groupe.swift */,
+				0B5EB91D21C9118E006A2767 /* TransactionViewController.swift */,
 			);
 			path = Marcompte;
 			sourceTree = "<group>";
@@ -428,10 +437,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B45C05E21BFDF3300A00692 /* SingletonBdd.swift in Sources */,
+				0B5EB91E21C9118E006A2767 /* TransactionViewController.swift in Sources */,
 				0B45C06421BFEA1000A00692 /* Transaction.swift in Sources */,
 				0BBB5A3721C27E7C00DA7CC7 /* MenuViewController.swift in Sources */,
+				0B5EB92021C9285F006A2767 /* addGroupViewController.swift in Sources */,
 				0B45C06621BFEC5900A00692 /* Groupe.swift in Sources */,
 				0B45C01121BFDCD600A00692 /* AppDelegate.swift in Sources */,
+				0B5EB92221C93028006A2767 /* addtransactionViewController.swift in Sources */,
 				0BBB5A1821C2718C00DA7CC7 /* GroupeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

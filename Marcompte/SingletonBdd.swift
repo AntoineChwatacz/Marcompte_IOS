@@ -132,6 +132,8 @@ class SingletonBdd {
     //INSERTION TABLE TRANSACTION
     func insertTransaction(nom:String, prix:Int, idGroupe:Int) {
         print ("--> insertTableTransaction debut")
+        print ("---> Groupe ID : \(idGroupe) ")
+        
         // Insertion de 2 tuples exemples (sera réalisé à chaque click sur le bouton)
         let insert = self.transaction_table.insert(self.transaction_id <- getPKTransaction(), self.transaction_nom <- nom, self.transaction_prix <- prix, self.transaction_groupe <- idGroupe)
         do {try self.database.run(insert)
@@ -169,26 +171,55 @@ class SingletonBdd {
     
     
     //SELECT TRANSACTION DU GROUPE ASSOCIE
-    func selectTransactions(id_groupe:Int) {
+    func selectTransactions(id_groupe:Int) -> [Transaction]?{
         print("---> SelectTransaction debut")
+        print ("---> Groupe ID : \(id_groupe) ")
+        var MyTransactions : Array<Transaction> = Array<Transaction>()
+        
+        print("---> SelectAllTransaction debut")
         do{
             let transactions = try self.database.prepare(self.transaction_table.filter(transaction_groupe ==
                 id_groupe))
+            
             for transaction in transactions{
-                print("id: ", transaction[self.transaction_id], ", nom de la transaction: ", transaction[self.transaction_nom], ", Prix total: ", transaction[self.transaction_prix])
+                print("id: ", transaction[self.transaction_id], ", nom de la transaction: ", transaction[self.transaction_nom], ", Montant :  ", transaction[self.transaction_prix])
+                
+                let mesTransactions = Transaction(transactionId: transaction[self.transaction_id], nom_transaction: transaction[self.transaction_nom], prix: transaction[self.transaction_prix],groupeId: id_groupe)
+                MyTransactions.append(mesTransactions)
             }
-        }catch{
+        }
+        catch
+        {
             print(error)
         }
-        print("---> SelectTransaction fin")
+        print("---> SelectAllTransaction fin")
+        return MyTransactions
     }
     
     
     func CountTableGroups() -> Int {
-        print ("--> CountTableGroups debut")
+        print ("--> CountTableTransaction debut")
         var resultat = 0
         do {
             resultat = try self.database.scalar(groupe_table.count)
+            print ("count1 = ", resultat)
+        }
+        catch
+        {
+            print (error)
+            resultat = -1
+        }
+        print ("--> CountTableTransaction fin")
+        return resultat
+    }
+    
+    func CountTableTransaction(id_groupe:Int) -> Int {
+        print ("--> CountTableGroups debut")
+        var resultat = 0
+        do {
+            resultat = try! database.scalar(transaction_table.where(transaction_groupe == id_groupe).count)
+
+            //resultat = try self.database.scalar(groupe_table.count)
             print ("count1 = ", resultat)
         }
         catch
