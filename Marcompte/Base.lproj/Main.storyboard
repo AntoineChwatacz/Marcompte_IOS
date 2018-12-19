@@ -258,12 +258,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAe-Bu-elD">
-                                <rect key="frame" x="98" y="432" width="130" height="30"/>
+                                <rect key="frame" x="96" y="432" width="134" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Aouter Transaction"/>
+                                <state key="normal" title="Ajouter Transaction"/>
                                 <connections>
                                     <action selector="Add_Transaction:" destination="Rgr-z6-NfS" eventType="touchUpInside" id="Q22-TI-E1R"/>
-                                    <segue destination="ZJ5-pa-xB9" kind="show" id="rBM-nu-7Q2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-2q-Lyx">
@@ -306,7 +305,4 @@
             <point key="canvasLocation" x="1958" y="125"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rBM-nu-7Q2"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,28 +8,43 @@
 
 import UIKit
 
-class TransactionViewController: UIViewController {
+class TransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var TransTableViews: UITableView!
     
     
     var groupeID:Int = 0
+    var NomGroupe:String = ""
     @IBOutlet weak var LabelGroupeNom: UILabel!
     
     let bdd = SingletonBdd.shared;
     
     var transactions: [Transaction] = []
     
-    override func viewDidLoad() {
+   override func viewDidLoad() {
         super.viewDidLoad()
         
-        LabelGroupeNom?.text = String(groupeID)
+        LabelGroupeNom?.text = String(NomGroupe)
+        // Do any additional setup after loading the view.
+        
+       transactions = bdd.selectTransactions(id_groupe: groupeID)!
+       TransTableViews.delegate = self
+       TransTableViews.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        LabelGroupeNom?.text = String(NomGroupe)
         // Do any additional setup after loading the view.
         
         transactions = bdd.selectTransactions(id_groupe: groupeID)!
+        TransTableViews.delegate = self
+        TransTableViews.dataSource = self
         
-       // TransTableViews.delegate = self as! UITableViewDelegate
-        //TransTableViews.dataSource = self as! UITableViewDataSource
+        //Reload TableView
+        TransTableViews.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,14 +54,14 @@ class TransactionViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "celluleTransModule")
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "celluleTransModule")
+        var cellTrans = tableView.dequeueReusableCell(withIdentifier: "celluleTransModule")
+        if cellTrans == nil {
+            cellTrans = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "celluleTransModule")
         }
         
-        cell?.textLabel?.text = "Nom transaction : \(transactions[indexPath.row].nom_transaction)"
-        cell?.detailTextLabel?.text = "Montant: \(transactions[indexPath.row].prix)"
-        return cell!
+        cellTrans?.textLabel?.text = "Nom transaction : \(transactions[indexPath.row].nom_transaction)"
+        cellTrans?.detailTextLabel?.text = "Montant: \(transactions[indexPath.row].prix)"
+        return cellTrans!
     }
     
     /* func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -58,17 +73,6 @@ class TransactionViewController: UIViewController {
         return bdd.CountTableTransaction(id_groupe: groupeID)
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

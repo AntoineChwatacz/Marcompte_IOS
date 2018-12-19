@@ -45,6 +45,10 @@ class addtransactionViewController: UIViewController {
         } else {
             bdd.insertTransaction(nom: TxNomTransaction.text!, prix: Int(TxPrix.text!)!, idGroupe: groupeIDtransaction)
             LabelRecapTransaction.text = "Transaction  ajouté, nom : \(TxNomTransaction.text!)  et le montant : \(TxPrix.text!) ."
+            
+            //Retour en arrière
+            _ = navigationController?.popViewController(animated: true)
+            
         }
     }
     

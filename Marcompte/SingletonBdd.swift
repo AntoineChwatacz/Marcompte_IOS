@@ -166,16 +166,15 @@ class SingletonBdd {
         }
         print("---> SelectAllGroupe fin")
         return Mygroups
-        
     }
-    
+
     
     //SELECT TRANSACTION DU GROUPE ASSOCIE
     func selectTransactions(id_groupe:Int) -> [Transaction]?{
         print("---> SelectTransaction debut")
         print ("---> Groupe ID : \(id_groupe) ")
         var MyTransactions : Array<Transaction> = Array<Transaction>()
-        
+                
         print("---> SelectAllTransaction debut")
         do{
             let transactions = try self.database.prepare(self.transaction_table.filter(transaction_groupe ==
@@ -202,7 +201,7 @@ class SingletonBdd {
         var resultat = 0
         do {
             resultat = try self.database.scalar(groupe_table.count)
-            print ("count1 = ", resultat)
+            print ("count table = ", resultat)
         }
         catch
         {
@@ -220,7 +219,7 @@ class SingletonBdd {
             resultat = try! database.scalar(transaction_table.where(transaction_groupe == id_groupe).count)
 
             //resultat = try self.database.scalar(groupe_table.count)
-            print ("count1 = ", resultat)
+            print ("count Transaction = ", resultat)
         }
         catch
         {

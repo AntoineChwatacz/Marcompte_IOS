@@ -17,10 +17,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     var groupes: [Groupe] = []
     let c = Groupe()
     
-
-    
-    
-    override func viewDidLoad() {
+ override func viewDidLoad() {
         super.viewDidLoad()
         
         bdd.createTable()
@@ -33,6 +30,18 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         TableView.delegate = self
         TableView.dataSource = self
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        groupes = bdd.selectAllGroupe()!
+        TableView.delegate = self
+        TableView.dataSource = self
+        
+        //Reload tableView
+        TableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +107,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             //vc?.groupeID = sender as! Int
             if let indexPath = self.TableView.indexPathForSelectedRow {
                 vc?.groupeID =  groupes[indexPath.row].id_groupe
+                vc?.NomGroupe =  groupes[indexPath.row].nomGroupe
             }
         }
     }

@@ -41,6 +41,9 @@ class addGroupViewController: UIViewController {
         } else {
             bdd.insertGroupe(nom: TxNom.text!, nombre:Int(txNombre.text!)!)
             LabelRecapGroupe.text = "Groupe ajouté, nom : \(TxNom.text!)  nombre de personnes : \(txNombre.text!) ."
+            
+            //Retour en arrière
+            _ = navigationController?.popViewController(animated: true)
         }
         
     }
