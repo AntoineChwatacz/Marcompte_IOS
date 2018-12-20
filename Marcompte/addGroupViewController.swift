@@ -7,12 +7,17 @@
 //
 
 import UIKit
+//import CommonCrypto
+
+
 
 class addGroupViewController: UIViewController {
 
     @IBOutlet weak var TxNom: UITextField!
     @IBOutlet weak var txNombre: UITextField!
     @IBOutlet weak var LabelRecapGroupe: UILabel!
+    @IBOutlet weak var TxMdp: UITextField!
+    @IBOutlet weak var TxDeuxiemeMdp: UITextField!
     
     let bdd = SingletonBdd.shared;
     
@@ -38,8 +43,27 @@ class addGroupViewController: UIViewController {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le nombre de personnes", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
-        } else {
-            bdd.insertGroupe(nom: TxNom.text!, nombre:Int(txNombre.text!)!)
+        }  else if TxMdp.text == "" {
+            let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le mot de passe", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }else if txNombre.text == "" {
+            let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque la vérification du mot de passe", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }else if TxMdp.text != TxDeuxiemeMdp.text {
+            let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement les mots de passes ne correspondent pas", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }else{
+            
+            //securisation mot de passe
+            var mdp_secure = ""
+            mdp_secure = sha256(TxMdp.text!)!
+            print("l'emprunte du mot de passe est : \(mdp_secure)")
+            
+            
+            bdd.insertGroupe(nom: TxNom.text!, nombre:Int(txNombre.text!)!, motdepasse: mdp_secure)
             LabelRecapGroupe.text = "Groupe ajouté, nom : \(TxNom.text!)  nombre de personnes : \(txNombre.text!) ."
             
             //Retour en arrière
@@ -47,6 +71,23 @@ class addGroupViewController: UIViewController {
         }
         
     }
+    
+    //fonction de sécurités
+    func sha256(_ data: Data) -> Data? {
+        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
+        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), res.mutableBytes.assumingMemoryBound(to: UInt8.self))
+        return res as Data
+    }
+    
+    func sha256(_ str: String) -> String? {
+        guard
+            let data = str.data(using: String.Encoding.utf8),
+            let shaData = sha256(data)
+            else { return nil }
+        let rc = shaData.base64EncodedString(options: [])
+        return rc
+    }
+    
     
     
     /*

@@ -15,6 +15,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     var groupeID:Int = 0
     var NomGroupe:String = ""
+    var motDePasse = ""
+    var nombrePers = 1
     @IBOutlet weak var LabelGroupeNom: UILabel!
     
     let bdd = SingletonBdd.shared;
@@ -23,10 +25,49 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
    override func viewDidLoad() {
         super.viewDidLoad()
-        
-        LabelGroupeNom?.text = String(NomGroupe)
-        // Do any additional setup after loading the view.
-        
+    
+    //cacher la vue
+        TransTableViews.isHidden = true
+   
+    // Test mot de passe
+    //1. Create the alert controller.
+    let alert = UIAlertController(title: "check mot de passe", message: "Donner le mot de passe", preferredStyle: .alert)
+    //2. Add the text field. You can configure it however you need.
+    alert.addTextField { (textField) in
+        textField.text = ""
+    }
+    // 3. Grab the value from the text field, and print it when the user clicks OK.
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
+        {
+            [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            var test_mdp_secure = ""
+            test_mdp_secure = self.sha256((textField?.text)!)!
+            if test_mdp_secure != self.motDePasse {
+                let innerAlert = UIAlertController(title: "mauvais mot de passe ", message: "Mot de passe incorrect !", preferredStyle: .alert)
+                innerAlert.addAction(UIAlertAction(title: "OK", style: .default, handler:
+                {
+                    [weak innerAlert] (_) in
+                    //Retour en arrière
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(innerAlert, animated: true, completion: nil)
+            } else {
+                // remettre la vue visible
+                self.TransTableViews.isHidden = false
+            }
+    }))
+    
+    /*var height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.80)
+    alert.view.addConstraint(height);
+ */
+    
+    // 4. Present the alert.
+    self.present(alert, animated: true, completion: nil)
+    
+
+    
+    LabelGroupeNom?.text = String(NomGroupe)
        transactions = bdd.selectTransactions(id_groupe: groupeID)!
        TransTableViews.delegate = self
        TransTableViews.dataSource = self
@@ -58,9 +99,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         if cellTrans == nil {
             cellTrans = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "celluleTransModule")
         }
-        
+        let montantPers = (transactions[indexPath.row].prix)/nombrePers
         cellTrans?.textLabel?.text = "Nom transaction : \(transactions[indexPath.row].nom_transaction)"
-        cellTrans?.detailTextLabel?.text = "Montant: \(transactions[indexPath.row].prix)"
+        cellTrans?.detailTextLabel?.text = "Montant total : \(transactions[indexPath.row].prix), montant par personne : \(montantPers)"
         return cellTrans!
     }
     
@@ -91,6 +132,24 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
+    
+    //fonction de sécurités
+    func sha256(_ data: Data) -> Data? {
+        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
+        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), res.mutableBytes.assumingMemoryBound(to: UInt8.self))
+        return res as Data
+    }
+    
+    func sha256(_ str: String) -> String? {
+        guard
+            let data = str.data(using: String.Encoding.utf8),
+            let shaData = sha256(data)
+            else { return nil }
+        let rc = shaData.base64EncodedString(options: [])
+        return rc
+    }
+    
+    
     /*
     // MARK: - Navigation
 

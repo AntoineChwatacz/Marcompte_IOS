@@ -16,6 +16,7 @@ class SingletonBdd {
     let groupe_id = Expression<Int>("id")
     let groupe_nom = Expression<String>("groupe_nom")
     let groupe_nombre = Expression<Int>("groupe_nombre")
+    let mot_de_passe = Expression<String>("mot_de_passe")
     //let groupe_transaction = Expression<Array<Transaction>>("groupes_transaction")
     
     
@@ -72,6 +73,7 @@ class SingletonBdd {
                 table.column(self.groupe_id, primaryKey: true)
                 table.column(self.groupe_nom)
                 table.column(self.groupe_nombre)
+                table.column(self.mot_de_passe)
                 //table.column(self.groupe_transaction)
             }
             do {// Exécution du drop et du create
@@ -116,10 +118,10 @@ class SingletonBdd {
     }
     
     //INSERTION TABLE GROUPE
-    func insertGroupe(nom:String, nombre:Int) {
+    func insertGroupe(nom:String, nombre:Int, motdepasse: String) {
         print ("--> insertTableGroupe debut")
         // Insertion de 2 tuples exemples (sera réalisé à chaque click sur le bouton)
-        let insert = self.groupe_table.insert(self.groupe_id <- getPKGroup(), self.groupe_nom <- nom, self.groupe_nombre <- nombre)
+        let insert = self.groupe_table.insert(self.groupe_id <- getPKGroup(), self.groupe_nom <- nom, self.groupe_nombre <- nombre, self.mot_de_passe <- motdepasse)
         do {try self.database.run(insert)
             print ("Insert ok")
             
@@ -154,9 +156,9 @@ class SingletonBdd {
             let groupes = try? self.database.prepare(self.groupe_table)
             
             for groupe in groupes!{
-                print("id: ", groupe[self.groupe_id], ", nom du groupe: ", groupe[self.groupe_nom], ", Nombre de personnes: ", groupe[self.groupe_nombre])
+                print("id: ", groupe[self.groupe_id], ", nom du groupe: ", groupe[self.groupe_nom], ", Nombre de personnes: ", groupe[self.groupe_nombre], "Mot de passe : ", groupe[self.mot_de_passe])
                 
-                let mesgroupes = Groupe(id: groupe[self.groupe_id], nom: groupe[self.groupe_nom], credit: groupe[self.groupe_nombre])
+                let mesgroupes = Groupe(id: groupe[self.groupe_id], nom: groupe[self.groupe_nom], credit: groupe[self.groupe_nombre], motdepasse: groupe[self.mot_de_passe])
                 Mygroups.append(mesgroupes)
             }
         }

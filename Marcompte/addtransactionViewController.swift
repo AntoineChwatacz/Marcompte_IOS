@@ -23,6 +23,7 @@ class addtransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("---> Groupe ID add : \(groupeIDtransaction) ")
+        
         // Do any additional setup after loading the view.
     }
 
@@ -63,6 +64,8 @@ class addtransactionViewController: UIViewController {
         }
     }
     
+    
+
     /*
     // MARK: - Navigation
 
