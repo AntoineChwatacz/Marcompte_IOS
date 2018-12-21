@@ -29,7 +29,7 @@ class SingletonBdd {
     var initiated = false;
     
     var pkgroupe = 1000;
-    var pktransaction = 1000;    // valeur de départ pour la primary key
+    var pktransaction = 2000;    // valeur de départ pour la primary key
     
     var tableGroupExist = false   // false la table n'est encore pas créée
     var tableTransactionExist = false
@@ -43,7 +43,7 @@ class SingletonBdd {
             // Do any additional setup after loading the view, typically from a nib.
             print ("-->  Singleton initialized")
             // Il est possible de créer des fichiers dans le répertoire "Documents" de votre application.
-            // Ici, création d'un fichier users.sqlite3
+            // Ici, création d'un fichier groupes_transaction
             do {let documentDirectory = try
                 FileManager.default.url(for: .documentDirectory,
                                         in: .userDomainMask, appropriateFor: nil, create: true)
@@ -77,7 +77,7 @@ class SingletonBdd {
                 //table.column(self.groupe_transaction)
             }
             do {// Exécution du drop et du create
-                try self.database.run(dropTable)
+                //try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table groupe est créée")
             }catch {
@@ -88,6 +88,7 @@ class SingletonBdd {
         if !self.tableTransactionExist {
             self.tableTransactionExist = true
             // Instruction pour faire un drop de la table TRANSACTION
+            
             let dropTable = self.transaction_table.drop(ifExists: true)
             // Instruction pour faire un create de la table TRANSACTION
             let createTable = self.transaction_table.create { table in
@@ -97,7 +98,7 @@ class SingletonBdd {
                 table.column(self.transaction_groupe)
             }
             do {// Exécution du drop et du create
-                try self.database.run(dropTable)
+                //try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table transaction est créée")
             }catch {
@@ -108,12 +109,16 @@ class SingletonBdd {
     }
     
     func getPKGroup() -> Int {
-        self.pkgroupe += 1
+        let nbGroups = self.CountTableGroups()
+    
+        self.pkgroupe = 1000 + nbGroups + 1
         return self.pkgroupe
     }
     
     func getPKTransaction() -> Int {
-        self.pktransaction += 1
+        
+    let nbTrans = self.CountTableTransaction()
+        self.pktransaction  = 2000 + nbTrans + 1
         return self.pktransaction
     }
     
@@ -199,11 +204,29 @@ class SingletonBdd {
     
     
     func CountTableGroups() -> Int {
-        print ("--> CountTableTransaction debut")
+        print ("--> CountTableGroups debut")
         var resultat = 0
         do {
             resultat = try self.database.scalar(groupe_table.count)
             print ("count table = ", resultat)
+        }
+        catch
+        {
+            print (error)
+            resultat = -1
+        }
+        print ("--> CountTableGroups fin")
+        return resultat
+    }
+    
+    func CountTableTransaction() -> Int {
+        print ("--> CountTableTransaction sans ID debut")
+        var resultat = 0
+        do {
+            resultat = try! database.scalar(transaction_table.count)
+            
+            //resultat = try self.database.scalar(groupe_table.count)
+            print ("count Transaction sans ID = ", resultat)
         }
         catch
         {
@@ -215,7 +238,7 @@ class SingletonBdd {
     }
     
     func CountTableTransaction(id_groupe:Int) -> Int {
-        print ("--> CountTableGroups debut")
+        print ("--> CountTableTransaction debut")
         var resultat = 0
         do {
             resultat = try! database.scalar(transaction_table.where(transaction_groupe == id_groupe).count)
@@ -228,7 +251,7 @@ class SingletonBdd {
             print (error)
             resultat = -1
         }
-        print ("--> CountTableGroups fin")
+        print ("--> CountTableTransaction fin")
         return resultat
     }
 }

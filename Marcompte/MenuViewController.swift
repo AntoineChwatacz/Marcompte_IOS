@@ -19,12 +19,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
  override func viewDidLoad() {
         super.viewDidLoad()
-        
-        bdd.createTable()
+    
+    bdd.createTable()
+    if bdd.CountTableGroups() == 0 {
+
         bdd.insertGroupe(nom: "test", nombre:2, motdepasse: "A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=") // mot de passe : 1234
         bdd.insertGroupe(nom: "test2", nombre:3, motdepasse: "mvFbM25qlhmShTffMLLmojdlafz51+dz7M7eZWBlKaA=") // mot de passe : 0000
-        //bdd.insertGroupe(nom: "test3", nombre:3, motdepasse: "test3")
-        
+    }
+    
         groupes = bdd.selectAllGroupe()!
 
         TableView.delegate = self
