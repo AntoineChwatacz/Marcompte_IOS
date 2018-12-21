@@ -13,6 +13,7 @@ class addtransactionViewController: UIViewController {
     @IBOutlet weak var TxNomTransaction: UITextField!
     @IBOutlet weak var TxPrix: UITextField!
     @IBOutlet weak var LabelRecapTransaction: UILabel!
+    @IBOutlet weak var BtnAddT: UIButton!
     
     var groupeIDtransaction:Int = 0
     
@@ -24,6 +25,10 @@ class addtransactionViewController: UIViewController {
         super.viewDidLoad()
         print ("---> Groupe ID add : \(groupeIDtransaction) ")
         
+        //button design
+        BtnAddT.layer.cornerRadius = 5
+        BtnAddT.layer.borderWidth = 1
+        BtnAddT.layer.borderColor = UIColor.black.cgColor
         // Do any additional setup after loading the view.
     }
 

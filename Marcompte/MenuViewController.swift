@@ -12,6 +12,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var add_groups: UIButton!
     @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var btnAddGroup: UIButton!
     
     let bdd = SingletonBdd.shared;
     var groupes: [Groupe] = []
@@ -19,6 +20,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
  override func viewDidLoad() {
         super.viewDidLoad()
+    
+    //button design
+    btnAddGroup.layer.cornerRadius = 5
+    btnAddGroup.layer.borderWidth = 1
+    btnAddGroup.layer.borderColor = UIColor.black.cgColor
     
     bdd.createTable()
     if bdd.CountTableGroups() == 0 {
@@ -60,6 +66,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell?.textLabel?.text = "Nom du groupe : \(groupes[indexPath.row].nomGroupe)"
         cell?.detailTextLabel?.text = "Nombre de personnes : \(groupes[indexPath.row].nombre)"
+    
         return cell!
     }
     

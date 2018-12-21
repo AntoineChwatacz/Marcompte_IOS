@@ -18,12 +18,16 @@ class addGroupViewController: UIViewController {
     @IBOutlet weak var LabelRecapGroupe: UILabel!
     @IBOutlet weak var TxMdp: UITextField!
     @IBOutlet weak var TxDeuxiemeMdp: UITextField!
+    @IBOutlet weak var btnAdd: UIButton!
     
     let bdd = SingletonBdd.shared;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //button design
+        btnAdd.layer.cornerRadius = 5
+        btnAdd.layer.borderWidth = 1
+        btnAdd.layer.borderColor = UIColor.black.cgColor
         // Do any additional setup after loading the view.
     }
 

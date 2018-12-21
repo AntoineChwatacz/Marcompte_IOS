@@ -11,6 +11,7 @@ import UIKit
 class TransactionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var TransTableViews: UITableView!
+    @IBOutlet weak var btnAddtrans: UIButton!
     
     
     var groupeID:Int = 0
@@ -25,6 +26,10 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
    override func viewDidLoad() {
         super.viewDidLoad()
+    //button design
+    btnAddtrans.layer.cornerRadius = 5
+    btnAddtrans.layer.borderWidth = 1
+    btnAddtrans.layer.borderColor = UIColor.black.cgColor
     
     //cacher la vue
         TransTableViews.isHidden = true
@@ -34,6 +39,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     let alert = UIAlertController(title: "check mot de passe", message: "Donner le mot de passe", preferredStyle: .alert)
     //2. Add the text field. You can configure it however you need.
     alert.addTextField { (textField) in
+        textField.isSecureTextEntry = true
         textField.text = ""
     }
     // 3. Grab the value from the text field, and print it when the user clicks OK.
