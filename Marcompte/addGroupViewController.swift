@@ -43,15 +43,23 @@ class addGroupViewController: UIViewController {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le nom", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+            
+            //VERIF NOMBRE DE PERSONNES
         } else if txNombre.text == "" {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le nombre de personnes", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+        }else if isStringAnInt(string: txNombre.text!) == false {
+            let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement, le nombre de personnes n'est pas valide", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+    
+            //VERIF MOT DE PASSE
         }  else if TxMdp.text == "" {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le mot de passe", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
-        }else if txNombre.text == "" {
+        }else if TxDeuxiemeMdp.text == "" {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque la vérification du mot de passe", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
@@ -75,6 +83,11 @@ class addGroupViewController: UIViewController {
         }
         
     }
+    //fonction test entier
+    func isStringAnInt(string: String) -> Bool {
+        return Int(string) != nil
+    }
+    
     
     //fonction de sécurités
     func sha256(_ data: Data) -> Data? {

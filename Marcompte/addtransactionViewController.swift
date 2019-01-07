@@ -77,10 +77,18 @@ class addtransactionViewController: UIViewController, UIPickerViewDataSource, UI
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le nom de la transaction", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+            
+            //VERIF PRIX
         } else if TxPrix.text == "" {
             let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement il manque le prix", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+        }else if isStringAnInt(string: TxPrix.text!) == false {
+            let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement, le prix n'est pas valide", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            
+            //VERIF CATEGORIE
         }else if mycategorie == "" {
                 let alert = UIAlertController(title: "Probleme formulaire", message: "Le formulaire n'et pas remplit correctement la catégorie est vide", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
@@ -94,6 +102,13 @@ class addtransactionViewController: UIViewController, UIPickerViewDataSource, UI
             
         }
     }
+    
+    
+    //fonction test entier
+    func isStringAnInt(string: String) -> Bool {
+        return Int(string) != nil
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
