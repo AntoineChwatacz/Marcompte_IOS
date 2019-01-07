@@ -78,7 +78,7 @@ class SingletonBdd {
                 //table.column(self.groupe_transaction)
             }
             do {// Exécution du drop et du create
-                try self.database.run(dropTable)
+                //try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table groupe est créée")
             }catch {
@@ -102,7 +102,7 @@ class SingletonBdd {
                 // FOREIGN KEY("self.transaction_groupe") REFERENCES "self.groupe_table"("self.groupe_id") ON DELETE SET NULL
             }
             do {// Exécution du drop et du create
-                try self.database.run(dropTable)
+                //try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table transaction est créée")
             }catch {

@@ -12,6 +12,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var TransTableViews: UITableView!
     @IBOutlet weak var btnAddtrans: UIButton!
+    @IBOutlet weak var btnCharts: UIButton!
     
     
     var groupeID:Int = 0
@@ -31,6 +32,9 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     btnAddtrans.layer.borderWidth = 1
     btnAddtrans.layer.borderColor = UIColor.black.cgColor
     
+    btnCharts.layer.cornerRadius = 5
+    btnCharts.layer.borderWidth = 1
+    btnCharts.layer.borderColor = UIColor.black.cgColor
     //cacher la vue
         TransTableViews.isHidden = true
    
@@ -135,6 +139,14 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             let vc = segue.destination as? addtransactionViewController
             print ("---> Groupe ID : \(groupeID) ")
             vc?.groupeIDtransaction = groupeID
+        }
+        
+        if segue.destination is BarChartViewController
+        {
+            let vc = segue.destination as? BarChartViewController
+            print ("---> Groupe ID : \(groupeID) ")
+            vc?.groupeIDtransaction = groupeID
+            vc?.NomGroupe = NomGroupe
         }
     }
 

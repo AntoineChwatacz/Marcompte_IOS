@@ -19,6 +19,9 @@
 		0B5EB91E21C9118E006A2767 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB91D21C9118E006A2767 /* TransactionViewController.swift */; };
 		0B5EB92021C9285F006A2767 /* addGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB91F21C9285F006A2767 /* addGroupViewController.swift */; };
 		0B5EB92221C93028006A2767 /* addtransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EB92121C93028006A2767 /* addtransactionViewController.swift */; };
+		0BA6A8CA21E392E500E648A2 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA6A8C721E392DC00E648A2 /* Charts.framework */; };
+		0BA6A8CB21E392E500E648A2 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA6A8C721E392DC00E648A2 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0BA6A8CF21E3936300E648A2 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA6A8CE21E3936300E648A2 /* BarChartViewController.swift */; };
 		0BBB5A3721C27E7C00DA7CC7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB5A3621C27E7C00DA7CC7 /* MenuViewController.swift */; };
 		0BC66B7721CBC0C600E4947A /* Objective-CBridgingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC66B7621CBC0C600E4947A /* Objective-CBridgingHeader.m */; };
 		0BD4FE7D21CD0622006EBBF8 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4FE7021CD0618006EBBF8 /* SQLite.framework */; };
@@ -40,6 +43,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0B45C00C21BFDCD600A00692;
 			remoteInfo = Marcompte;
+		};
+		0BA6A8C621E392DC00E648A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		0BA6A8C821E392DC00E648A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
+		0BA6A8CC21E392E500E648A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A58A4ED274A941CA248EA921;
+			remoteInfo = Charts;
 		};
 		0BD4FE6F21CD0618006EBBF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -107,6 +131,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0BD4FE7F21CD0628006EBBF8 /* SQLite.framework in Embed Frameworks */,
+				0BA6A8CB21E392E500E648A2 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +157,8 @@
 		0B5EB91D21C9118E006A2767 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		0B5EB91F21C9285F006A2767 /* addGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addGroupViewController.swift; sourceTree = "<group>"; };
 		0B5EB92121C93028006A2767 /* addtransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addtransactionViewController.swift; sourceTree = "<group>"; };
+		0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-piechart-small-slice-labels/Charts.xcodeproj"; sourceTree = "<group>"; };
+		0BA6A8CE21E3936300E648A2 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		0BBB5A3621C27E7C00DA7CC7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0BC66B7521CBC0C500E4947A /* Marcompte-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marcompte-Bridging-Header.h"; sourceTree = "<group>"; };
 		0BC66B7621CBC0C600E4947A /* Objective-CBridgingHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Objective-CBridgingHeader.m"; sourceTree = "<group>"; };
@@ -143,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA6A8CA21E392E500E648A2 /* Charts.framework in Frameworks */,
 				0BD4FE7E21CD0628006EBBF8 /* SQLite.framework in Frameworks */,
 				0BD4FE7D21CD0622006EBBF8 /* SQLite.framework in Frameworks */,
 			);
@@ -173,6 +201,7 @@
 				0B45C02421BFDCD900A00692 /* MarcompteTests */,
 				0B45C02F21BFDCD900A00692 /* MarcompteUITests */,
 				0B45C00E21BFDCD600A00692 /* Products */,
+				0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */,
 				0BD4FE6521CD0618006EBBF8 /* SQLite.xcodeproj */,
 				0B45C05621BFDEA200A00692 /* Frameworks */,
 				0BC66B7521CBC0C500E4947A /* Marcompte-Bridging-Header.h */,
@@ -192,6 +221,7 @@
 		0B45C00F21BFDCD600A00692 /* Marcompte */ = {
 			isa = PBXGroup;
 			children = (
+				0BA6A8CE21E3936300E648A2 /* BarChartViewController.swift */,
 				0B45C01021BFDCD600A00692 /* AppDelegate.swift */,
 				0B45C01421BFDCD600A00692 /* Main.storyboard */,
 				0B5EB92121C93028006A2767 /* addtransactionViewController.swift */,
@@ -233,6 +263,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0BA6A8C221E392DC00E648A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BA6A8C721E392DC00E648A2 /* Charts.framework */,
+				0BA6A8C921E392DC00E648A2 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0BD4FE6621CD0618006EBBF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +302,7 @@
 			);
 			dependencies = (
 				0BD4FE8121CD0628006EBBF8 /* PBXTargetDependency */,
+				0BA6A8CD21E392E500E648A2 /* PBXTargetDependency */,
 			);
 			name = Marcompte;
 			productName = Marcompte;
@@ -342,6 +382,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 0BA6A8C221E392DC00E648A2 /* Products */;
+					ProjectRef = 0BA6A8C121E392DC00E648A2 /* Charts.xcodeproj */;
+				},
+				{
 					ProductGroup = 0BD4FE6621CD0618006EBBF8 /* Products */;
 					ProjectRef = 0BD4FE6521CD0618006EBBF8 /* SQLite.xcodeproj */;
 				},
@@ -356,6 +400,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0BA6A8C721E392DC00E648A2 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 0BA6A8C621E392DC00E648A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0BA6A8C921E392DC00E648A2 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 0BA6A8C821E392DC00E648A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0BD4FE7021CD0618006EBBF8 /* SQLite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -448,6 +506,7 @@
 				0BC66B7721CBC0C600E4947A /* Objective-CBridgingHeader.m in Sources */,
 				0B45C01121BFDCD600A00692 /* AppDelegate.swift in Sources */,
 				0B5EB92221C93028006A2767 /* addtransactionViewController.swift in Sources */,
+				0BA6A8CF21E3936300E648A2 /* BarChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +538,11 @@
 			isa = PBXTargetDependency;
 			target = 0B45C00C21BFDCD600A00692 /* Marcompte */;
 			targetProxy = 0B45C02D21BFDCD900A00692 /* PBXContainerItemProxy */;
+		};
+		0BA6A8CD21E392E500E648A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 0BA6A8CC21E392E500E648A2 /* PBXContainerItemProxy */;
 		};
 		0BD4FE8121CD0628006EBBF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

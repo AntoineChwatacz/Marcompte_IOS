@@ -255,6 +255,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDq-hK-mZA">
+                                <rect key="frame" x="28" y="160" width="137" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94426003889999999" green="0.79495297399999998" blue="0.78523862119999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Graphiques">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vfl-DD-ijl" kind="show" id="27q-7z-vsH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.87279881930000003" green="0.9023234269" blue="0.94426003889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="e95-w5-WbW"/>
@@ -263,6 +274,7 @@
                         <outlet property="LabelGroupeNom" destination="kbZ-it-P1B" id="wdK-3A-jwt"/>
                         <outlet property="TransTableViews" destination="ldB-fu-j0m" id="Fn7-AK-ZvF"/>
                         <outlet property="btnAddtrans" destination="MeE-qi-mVT" id="0XY-xj-jXD"/>
+                        <outlet property="btnCharts" destination="vDq-hK-mZA" id="o7D-hr-2MW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NT2-PQ-Zrw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,7 +361,81 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTP-q8-XaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5048.8000000000002" y="441.22938530734638"/>
+            <point key="canvasLocation" x="5633" y="765"/>
+        </scene>
+        <!--Bar Chart View Controller-->
+        <scene sceneID="IOR-bq-CcB">
+            <objects>
+                <viewController id="Vfl-DD-ijl" customClass="BarChartViewController" customModule="Marcompte" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tSf-6U-8rt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VcW-7j-yg3">
+                                <rect key="frame" x="37.5" y="151.5" width="300" height="300"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aBa-tz-RdB">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-SK-fzj">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tay-Ip-jJ3" customClass="PieChartView" customModule="Charts">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="1Hn-Oe-AbG"/>
+                                                            <constraint firstAttribute="height" constant="300" id="Z7p-xd-FlF"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="cZQ-iV-0i7"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="500" id="h7F-c3-jHF"/>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="hq9-yT-mXq"/>
+                                                            <constraint firstAttribute="width" constant="300" id="pSd-MW-SR8"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Graphique des transactions : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roL-fL-1ZO">
+                                <rect key="frame" x="28" y="20" width="267" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nom du groupe : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRW-eC-8Ky">
+                                <rect key="frame" x="28" y="62" width="149" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1E-B3-a1C">
+                                <rect key="frame" x="28" y="92" width="309" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87279881930000003" green="0.9023234269" blue="0.94426003889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VcW-7j-yg3" firstAttribute="centerY" secondItem="tSf-6U-8rt" secondAttribute="centerY" id="8Xq-g1-Y0u"/>
+                            <constraint firstItem="VcW-7j-yg3" firstAttribute="centerX" secondItem="tSf-6U-8rt" secondAttribute="centerX" id="90E-wv-POL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eQw-bD-iF9"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="LabelNomGroupe" destination="F1E-B3-a1C" id="EDQ-zf-RjY"/>
+                        <outlet property="pieView" destination="tay-Ip-jJ3" id="d2k-za-qj8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Jg-O8-3iF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5597.6000000000004" y="-78.710644677661179"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L2F-w2-PNn">
