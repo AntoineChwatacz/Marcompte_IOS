@@ -106,7 +106,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
             cellTrans = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "celluleTransModule")
         }
         let montantPers = (transactions[indexPath.row].prix)/nombrePers
-        cellTrans?.textLabel?.text = "Nom transaction : \(transactions[indexPath.row].nom_transaction)"
+        cellTrans?.textLabel?.text = "Nom transaction : \(transactions[indexPath.row].nom_transaction), catégorie : \(transactions[indexPath.row].categorie)"
         cellTrans?.detailTextLabel?.text = "Montant total : \(transactions[indexPath.row].prix), montant par personne : \(montantPers)"
         return cellTrans!
     }

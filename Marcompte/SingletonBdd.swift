@@ -25,6 +25,7 @@ class SingletonBdd {
     let transaction_nom = Expression<String>("transaction_nom")
     let transaction_prix = Expression<Int>("transaction_prix")
     let transaction_groupe = Expression<Int>("transaction_groupe")
+    let transaction_categorie = Expression<String>("transaction_categorie")
     
     var initiated = false;
     
@@ -77,7 +78,7 @@ class SingletonBdd {
                 //table.column(self.groupe_transaction)
             }
             do {// Exécution du drop et du create
-                //try self.database.run(dropTable)
+                try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table groupe est créée")
             }catch {
@@ -95,10 +96,13 @@ class SingletonBdd {
                 table.column(self.transaction_id, primaryKey: true)
                 table.column(self.transaction_nom)
                 table.column(self.transaction_prix)
+                table.column(self.transaction_categorie)
                 table.column(self.transaction_groupe)
+                //table.foreignKey(self.transaction_groupe, references: self.groupe_table, self.groupe_id, delete: .setNull)
+                // FOREIGN KEY("self.transaction_groupe") REFERENCES "self.groupe_table"("self.groupe_id") ON DELETE SET NULL
             }
             do {// Exécution du drop et du create
-                //try self.database.run(dropTable)
+                try self.database.run(dropTable)
                 try self.database.run(createTable)
                 print ("Table transaction est créée")
             }catch {
@@ -137,12 +141,12 @@ class SingletonBdd {
     }
     
     //INSERTION TABLE TRANSACTION
-    func insertTransaction(nom:String, prix:Int, idGroupe:Int) {
+    func insertTransaction(nom:String, prix:Int, categorie:String, idGroupe:Int) {
         print ("--> insertTableTransaction debut")
         print ("---> Groupe ID : \(idGroupe) ")
         
         // Insertion de 2 tuples exemples (sera réalisé à chaque click sur le bouton)
-        let insert = self.transaction_table.insert(self.transaction_id <- getPKTransaction(), self.transaction_nom <- nom, self.transaction_prix <- prix, self.transaction_groupe <- idGroupe)
+        let insert = self.transaction_table.insert(self.transaction_id <- getPKTransaction(), self.transaction_nom <- nom, self.transaction_prix <- prix, self.transaction_categorie <- categorie, self.transaction_groupe <- idGroupe)
         do {try self.database.run(insert)
             print ("Insert ok")
             
@@ -188,9 +192,9 @@ class SingletonBdd {
                 id_groupe))
             
             for transaction in transactions{
-                print("id: ", transaction[self.transaction_id], ", nom de la transaction: ", transaction[self.transaction_nom], ", Montant :  ", transaction[self.transaction_prix])
+                print("id: ", transaction[self.transaction_id], ", nom de la transaction: ", transaction[self.transaction_nom], ", Montant :  ", transaction[self.transaction_prix], " categorie : ", transaction[self.transaction_categorie])
                 
-                let mesTransactions = Transaction(transactionId: transaction[self.transaction_id], nom_transaction: transaction[self.transaction_nom], prix: transaction[self.transaction_prix],groupeId: id_groupe)
+                let mesTransactions = Transaction(transactionId: transaction[self.transaction_id], nom_transaction: transaction[self.transaction_nom], prix: transaction[self.transaction_prix],categorie:transaction[self.transaction_categorie], groupeId: id_groupe)
                 MyTransactions.append(mesTransactions)
             }
         }

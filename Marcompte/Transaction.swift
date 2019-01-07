@@ -15,22 +15,25 @@ var transactionId: Int
 var nom_transaction: String
 var prix: Int
 var groupeId: Int
+var categorie: String
 
 init() {
     transactionId = 0
     nom_transaction = "?"
     prix = 0
+    categorie = "Autres"
     groupeId = 0
 }
 
-init(transactionId: Int, nom_transaction: String, prix: Int, groupeId: Int) {
+    init(transactionId: Int, nom_transaction: String, prix: Int, categorie:String, groupeId: Int) {
     self.transactionId = transactionId
     self.nom_transaction = nom_transaction
     self.prix = prix
+    self.categorie = categorie
     self.groupeId = groupeId
 }
 
 public var descriptor: String {
-    return "Transaction(\(transactionId),\(nom_transaction),\(prix),\(groupeId))"
+    return "Transaction(\(transactionId),\(nom_transaction),\(prix),\(categorie),\(groupeId))"
 }
 }
